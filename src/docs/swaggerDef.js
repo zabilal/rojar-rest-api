@@ -1,5 +1,5 @@
 const { version } = require('../../package.json');
-const config = require('../config/config');
+// const config = require('../config/config');
 
 const swaggerDef = {
   openapi: '3.0.0',
@@ -13,9 +13,10 @@ const swaggerDef = {
   },
   servers: [
     {
-      url: `http://localhost:${config.port}/v1`,
+      url: 'https://rojar-api.herokuapp.com/v1',
     },
   ],
 };
 
 module.exports = swaggerDef;
+// url: `http://localhost:${config.port}/v1`,
