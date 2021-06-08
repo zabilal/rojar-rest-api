@@ -6,6 +6,16 @@ const { roles } = require('../config/roles');
 
 const userSchema = mongoose.Schema(
   {
+    fisrtName: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    lastName: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     email: {
       type: String,
       required: true,
@@ -35,6 +45,41 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: roles,
       default: 'user',
+    },
+    address: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    hasStore: {
+      type: Boolean,
+      required: false,
+      trim: true,
+    },
+    isProfileCompleted: {
+      type: Boolean,
+      required: false,
+      trim: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    photoUrl: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    shareId: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    storeName: {
+      type: String,
+      required: false,
+      trim: true,
     },
   },
   {
