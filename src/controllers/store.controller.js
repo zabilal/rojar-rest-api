@@ -12,8 +12,8 @@ const createStore = catchAsync(async (req, res) => {
   const hasStore = true;
   const body = { storeId, hasStore };
 
-  const userUpdate = await userService.updateUserById(req.body.storeOwnerId, body);
-  const result = { store, userUpdate };
+  const user = await userService.updateUserById(req.body.storeOwnerId, body);
+  const result = { store, user };
 
   res.status(httpStatus.CREATED).send(result);
 });
