@@ -28,7 +28,7 @@ const postSchema = mongoose.Schema(
       required: false,
       trim: true,
     },
-    userPhotoUrl: {
+    ownerPhoto: {
       type: String,
       required: false,
       trim: true,
