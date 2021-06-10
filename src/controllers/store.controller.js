@@ -3,10 +3,19 @@ const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { storeService } = require('../services');
+const { userService } = require('../services');
 
 const createStore = catchAsync(async (req, res) => {
   const store = await storeService.createStore(req.body);
-  res.status(httpStatus.CREATED).send(store);
+
+  const storeId = store.id;
+  const hasStore = true;
+  const body = { storeId, hasStore };
+
+  const userUpdate = await userService.updateUserById(req.body.storeOwnerId, body);
+  const result = { store, userUpdate };
+
+  res.status(httpStatus.CREATED).send(result);
 });
 
 const getStores = catchAsync(async (req, res) => {

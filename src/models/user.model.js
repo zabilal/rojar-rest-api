@@ -76,7 +76,7 @@ const userSchema = mongoose.Schema(
       required: false,
       trim: true,
     },
-    storeName: {
+    storeId: {
       type: String,
       required: false,
       trim: true,
