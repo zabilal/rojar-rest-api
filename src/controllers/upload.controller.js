@@ -1,5 +1,8 @@
 const multer = require('multer');
 const sharp = require('sharp');
+const fs = require('fs');
+
+const baseUrl = 'https://rojar-api.herokuapp.com/v1/files/';
 
 const multerStorage = multer.memoryStorage();
 
@@ -57,15 +60,40 @@ const getResult = async (req, res) => {
   }
 
   // const images = req.body.images.map((image) => '' + image + '').join('');
-  const images = req.body.images.map((image) => image);
+  const images = req.body.images.map((image) => baseUrl + image).join('\n');
 
   return res.send(`Images were uploaded:${images}`);
+};
+
+const getListFiles = (req, res) => {
+  const directoryPath = 'uploads/';
+  const fileName = req.params.name;
+
+  fs.readdir(directoryPath + fileName, function (err, files) {
+    if (err) {
+      res.status(500).send({
+        message: 'Unable to scan files!',
+      });
+    }
+
+    const fileInfos = [];
+
+    files.forEach((file) => {
+      fileInfos.push({
+        name: file,
+        url: baseUrl + file,
+      });
+    });
+
+    res.status(200).send(fileInfos);
+  });
 };
 
 module.exports = {
   uploadImages,
   resizeImages,
   getResult,
+  getListFiles,
 };
 
 // module.exports = {

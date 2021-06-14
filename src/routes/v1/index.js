@@ -13,6 +13,6 @@ router.use('/users', userRoute);
 router.use('/posts', postRoute);
 router.use('/stores', storeRoute);
 router.use('/docs', docsRoute);
-router.use('/file/upload', uploadRoute);
+router.use('/files', uploadRoute);
 
 module.exports = router;
