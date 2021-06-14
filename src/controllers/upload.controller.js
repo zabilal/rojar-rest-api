@@ -55,12 +55,21 @@ const resizeImages = async (req, res, next) => {
 };
 
 const getResult = async (req, res) => {
+  // eslint-disable-next-line prefer-destructuring
+  const host = req.host;
+  // const filePath = req.protocol + '://' + host + '/' + req.file.path;
+
   if (req.body.images.length <= 0) {
     return res.send(`You must select at least 1 image.`);
   }
 
   // const images = req.body.images.map((image) => '' + image + '').join('');
-  const images = req.body.images.map((image) => baseUrl + image).join('\n');
+  const images = req.body.images.map((image) => {
+    // eslint-disable-next-line no-unused-expressions
+    // eslint-disable-next-line prefer-template
+    return req.protocol + '://' + host + '/' + image.path;
+    // return baseUrl + image;
+  });
 
   return res.send(`Images were uploaded:${images}`);
 };
