@@ -6,7 +6,8 @@ const router = express.Router();
 router
   .route('/')
   // .post(uploadController.uploadImages, uploadController.resizeImages, uploadController.getResult)
-  .post(uploadController.uploadImages)
-  .get(uploadController.getListFiles);
+  .post(uploadController.upload)
+  .get(uploadController.getListFiles)
+  .get(uploadController.download);
 
 module.exports = router;
