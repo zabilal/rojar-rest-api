@@ -4,6 +4,7 @@ const userRoute = require('./user.route');
 const postRoute = require('./post.route');
 const storeRoute = require('./store.route');
 const docsRoute = require('./docs.route');
+const uploadRoute = require('./upload.route');
 
 const router = express.Router();
 
@@ -12,5 +13,6 @@ router.use('/users', userRoute);
 router.use('/posts', postRoute);
 router.use('/stores', storeRoute);
 router.use('/docs', docsRoute);
+router.use('/file/upload', uploadRoute);
 
 module.exports = router;
