@@ -24,6 +24,8 @@ if (config.env !== 'test') {
 // set security HTTP headers
 app.use(helmet());
 
+app.use('../uploads', express.static('../uploads'));
+
 // parse json request body
 app.use(express.json());
 

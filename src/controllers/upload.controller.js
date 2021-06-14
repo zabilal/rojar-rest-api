@@ -69,7 +69,7 @@ const getListFiles = (req, res) => {
   const directoryPath = 'uploads/';
   const fileName = req.params.name;
 
-  fs.readdir(directoryPath + fileName, function (err, files) {
+  fs.readFile(directoryPath + fileName, function (err, files) {
     if (err) {
       res.status(500).send({
         message: 'Unable to scan files!',
