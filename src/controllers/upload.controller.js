@@ -63,15 +63,16 @@ const getResult = async (req, res) => {
     return res.send(`You must select at least 1 image.`);
   }
 
+  const imageList = [];
   // const images = req.body.images.map((image) => '' + image + '').join('');
-  const images = req.body.images.map((image) => {
+  req.body.images.map((image) => {
     // eslint-disable-next-line no-unused-expressions
     // eslint-disable-next-line prefer-template
-    return req.protocol + '://' + host + '/' + image.path;
+    return imageList.push(req.protocol + '://' + host + '/v1/' + image);
     // return baseUrl + image;
   });
 
-  return res.send(`Images were uploaded:${images}`);
+  return res.send(imageList);
 };
 
 const getListFiles = (req, res) => {
