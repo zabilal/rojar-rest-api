@@ -3,9 +3,21 @@ const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { postService } = require('../services');
+const { storeService } = require('../services');
 
 const createPost = catchAsync(async (req, res) => {
-  const post = await postService.createPost(req.body);
+  if (req.body.storeId === null) {
+    res.status(httpStatus.UNPROCESSABLE_ENTITY).send();
+  }
+
+  const store = await storeService.getStoreById(req.body.storeId);
+  const { body } = req;
+  // eslint-disable-next-line dot-notation
+  body['pickupAddress'] = store.storeAddress;
+  // eslint-disable-next-line no-console
+  console.log(body);
+
+  const post = await postService.createPost(body);
   res.status(httpStatus.CREATED).send(post);
 });
 
