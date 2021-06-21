@@ -1,10 +1,5 @@
 # ROJAR RESTful API | Node Server
 
-[![Build Status](https://travis-ci.org/hagopj13/node-express-mongoose-boilerplate.svg?branch=master)](https://travis-ci.org/hagopj13/node-express-mongoose-boilerplate)
-[![Coverage Status](https://coveralls.io/repos/github/hagopj13/node-express-mongoose-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/hagopj13/node-express-mongoose-boilerplate?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ab03f5d62a1404f87a659afe8d6d5de)](https://www.codacy.com/manual/hagopj13/node-express-mongoose-boilerplate?utm_source=github.com&utm_medium=referral&utm_content=hagopj13/node-express-mongoose-boilerplate&utm_campaign=Badge_Grade)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
 A fully powered Node-express and MongoDB rest API for Rojar platform
 
 It comes with many built-in features, such as authentication using JWT, request validation, unit and integration tests, continuous integration, docker support, API documentation, pagination, etc. For more details about the features, check the list below.
@@ -384,12 +379,3 @@ To maintain a consistent coding style across different IDEs, the project contain
 
 Contributions are more than welcome! Please check out the [contributing guide](CONTRIBUTING.md).
 
-## Inspirations
-
-- [danielfsousa/express-rest-es2017-boilerplate](https://github.com/danielfsousa/express-rest-es2017-boilerplate)
-- [madhums/node-express-mongoose](https://github.com/madhums/node-express-mongoose)
-- [kunalkapadia/express-mongoose-es6-rest-api](https://github.com/kunalkapadia/express-mongoose-es6-rest-api)
-
-## License
-
-[MIT](LICENSE)
