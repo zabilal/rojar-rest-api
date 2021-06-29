@@ -40,13 +40,27 @@ const userSchema = mongoose.Schema(
       },
       private: true, // used by the toJSON plugin
     },
-
     role: {
       type: String,
       enum: roles,
       default: 'user',
     },
     address: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    city: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    state: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    country: {
       type: String,
       required: false,
       trim: true,
@@ -78,6 +92,11 @@ const userSchema = mongoose.Schema(
     },
     storeId: {
       type: String,
+      required: false,
+      trim: true,
+    },
+    followings: {
+      type: Array,
       required: false,
       trim: true,
     },

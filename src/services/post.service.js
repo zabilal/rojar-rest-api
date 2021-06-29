@@ -1,3 +1,5 @@
+// ignore no-plusplus
+
 const httpStatus = require('http-status');
 const { Post } = require('../models');
 const ApiError = require('../utils/ApiError');
@@ -35,14 +37,14 @@ const getPostById = async (id) => {
   return Post.findById(id);
 };
 
-// /**
-//  * Get Post by ownerId
-//  * @param {string} ownerId
-//  * @returns {Promise<Post>}
-//  */
-// const getUserByOwnerId = async (ownerId) => {
-//   return User.findOne({ ownerId });
-// };
+/**
+ * Get All Posts by ownerId
+ * @param {string} ownerId
+ * @returns {Promise<Post>}
+ */
+const getAllPostsByOwnerId = async (ownerId) => {
+  return Post.findAll({ ownerId });
+};
 
 /**
  * Update Post by id
@@ -56,6 +58,34 @@ const updatePostById = async (postId, updateBody) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
   }
   Object.assign(post, updateBody);
+  await post.save();
+  return post;
+};
+
+/**
+ * like and unlike Post by id
+ * @param {ObjectId} postId
+ * @param {Object} likeBody
+ * @returns {Promise<Post>}
+ */
+const likeDislikePost = async (body) => {
+  const { userId, postId } = body;
+  const post = await getPostById(postId);
+
+  if (!post) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
+  }
+
+  if (!post.likes.includes(userId)) {
+    post.likes.push(userId);
+    // return post;
+  } else {
+    for (let i = 0; i < post.likes.length; i++) {
+      if (post.likes[i] === userId) {
+        post.likes.splice(i, 1);
+      }
+    }
+  }
   await post.save();
   return post;
 };
@@ -80,4 +110,6 @@ module.exports = {
   getPostById,
   updatePostById,
   deletePostById,
+  likeDislikePost,
+  getAllPostsByOwnerId,
 };

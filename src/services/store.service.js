@@ -1,4 +1,6 @@
 const httpStatus = require('http-status');
+// const { get } = require('mongoose');
+const { userService } = require('.');
 const { Store } = require('../models');
 const ApiError = require('../utils/ApiError');
 
@@ -61,6 +63,48 @@ const updateStoreById = async (storeId, updateBody) => {
 };
 
 /**
+ * Follow  and unfollow Store by id
+ * @param {Object} body
+ * @returns {Promise<Store>}
+ */
+const followStoreById = async (body) => {
+  const { userId, storeId } = body;
+
+  const store = await getStoreById(storeId);
+  const user = await userService.getUserById(userId);
+
+  if (!store) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Store not found');
+  }
+
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+
+  if (!store.followers.includes(userId)) {
+    store.followers.push(userId);
+    user.followings.push(storeId);
+  } else {
+    for (let i = 0; i < store.followers.length; i++) {
+      if (store.followers[i] === userId) {
+        store.followers.splice(i, 1);
+      }
+    }
+    for (let j = 0; j < user.followings.length; j++) {
+      if (user.followings[j] === storeId) {
+        user.followings.splice(j, 1);
+      }
+    }
+  }
+  await store.save();
+  await user.save();
+
+  const response = { user, store };
+
+  return response;
+};
+
+/**
  * Delete store by id
  * @param {ObjectId} storeId
  * @returns {Promise<Store>}
@@ -80,5 +124,6 @@ module.exports = {
   getStoreById,
   getStoreByOwnerId,
   updateStoreById,
+  followStoreById,
   deleteStoreById,
 };

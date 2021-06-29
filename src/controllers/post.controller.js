@@ -46,10 +46,16 @@ const deletePost = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const likeDislikePost = catchAsync(async (req, res) => {
+  const post = await postService.likeDislikePost(req.body);
+  res.send(post);
+});
+
 module.exports = {
   createPost,
   getPosts,
   getPost,
   updatePost,
   deletePost,
+  likeDislikePost,
 };
