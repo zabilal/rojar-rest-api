@@ -7,6 +7,7 @@ const router = express.Router();
 router.route('/').post(auth('managePosts'), postController.createPost).get(auth('getPosts'), postController.getPosts);
 
 router.route('/like').patch(auth('managePosts'), postController.likeDislikePost);
+router.route('/user/:userId').get(auth('managePosts'), postController.getPostsByUserId);
 
 router
   .route('/:postId')
