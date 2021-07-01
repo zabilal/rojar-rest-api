@@ -22,6 +22,7 @@ const createPost = catchAsync(async (req, res) => {
 });
 
 const getPosts = catchAsync(async (req, res) => {
+  console.log('controller getposts');
   const filter = pick(req.query, ['name']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await postService.queryPosts(filter, options);
@@ -37,6 +38,7 @@ const getPost = catchAsync(async (req, res) => {
 });
 
 const getPostsByUserId = catchAsync(async (req, res) => {
+  console.log('controller getPostsByUserId');
   const post = await postService.getAllPostsByOwnerId(req.params.userId);
   if (!post) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Posts not found');

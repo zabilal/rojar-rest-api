@@ -24,6 +24,7 @@ const createPost = async (postBody) => {
  * @returns {Promise<QueryResult>}
  */
 const queryPosts = async (filter, options) => {
+  console.log('getting all posts for feeds');
   const posts = await Post.paginate(filter, options);
   return posts;
 };
@@ -43,6 +44,7 @@ const getPostById = async (id) => {
  * @returns {Promise<Post>}
  */
 const getAllPostsByOwnerId = async (ownerId) => {
+  console.log("lets fetch all users posts");
   return Post.findAll({ ownerId });
 };
 
