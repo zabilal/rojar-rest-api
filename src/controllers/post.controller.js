@@ -26,7 +26,7 @@ const getPosts = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await postService.queryPosts(filter, options);
-  res.send(httpStatus.OK).send(result);
+  res.send(result);
 });
 
 const getPost = catchAsync(async (req, res) => {
@@ -34,7 +34,7 @@ const getPost = catchAsync(async (req, res) => {
   if (!post) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
   }
-  res.status(httpStatus.OK).send(post);
+  res.send(post);
 });
 
 const getPostsByUserId = catchAsync(async (req, res) => {
@@ -43,22 +43,22 @@ const getPostsByUserId = catchAsync(async (req, res) => {
   if (!post) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Posts not found');
   }
-  res.status(httpStatus.OK).send(post);
+  res.send(post);
 });
 
 const updatePost = catchAsync(async (req, res) => {
   const post = await postService.updatePostById(req.params.userId, req.body);
-  res.status(httpStatus.OK).send(post);
+  res.send(post);
 });
 
 const deletePost = catchAsync(async (req, res) => {
   await postService.deletePostById(req.params.userId);
-  res.status(httpStatus.OK).send();
+  res.send();
 });
 
 const likeDislikePost = catchAsync(async (req, res) => {
   const post = await postService.likeDislikePost(req.body);
-  res.status(httpStatus.OK).send(post);
+  res.send(post);
 });
 
 module.exports = {

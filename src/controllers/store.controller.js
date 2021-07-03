@@ -21,7 +21,7 @@ const getStores = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['storeName']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await storeService.queryStores(filter, options);
-  res.status(httpStatus.FOUND).send(result);
+  res.send(result);
 });
 
 const getStore = catchAsync(async (req, res) => {
@@ -29,7 +29,7 @@ const getStore = catchAsync(async (req, res) => {
   if (!store) {
     throw new ApiError(httpStatus.NOT_FOUND, 'store not found');
   }
-  res.status(httpStatus.FOUND).send(store);
+  res.send(store);
 });
 
 const getAllStorePost = catchAsync(async (req, res) => {
@@ -45,17 +45,17 @@ const getAllStorePost = catchAsync(async (req, res) => {
 
   const storePosts = { store, posts };
 
-  res.status(httpStatus.OK).send(storePosts);
+  res.send(storePosts);
 });
 
 const updateStore = catchAsync(async (req, res) => {
   const store = await storeService.updateStoreById(req.params.userId, req.body);
-  res.status(httpStatus.OK).send(store);
+  res.send(store);
 });
 
 const followStore = catchAsync(async (req, res) => {
   const response = await storeService.followStoreById(req.body);
-  res.status(httpStatus.OK).send(response);
+  res.send(response);
 });
 
 const deleteStore = catchAsync(async (req, res) => {

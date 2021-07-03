@@ -44,7 +44,7 @@ const getPostById = async (id) => {
  * @returns {Promise<Post>}
  */
 const getAllPostsByOwnerId = async (ownerId) => {
-  console.log("lets fetch all users posts");
+  console.log('lets fetch all users posts');
   return Post.findAll({ ownerId });
 };
 
