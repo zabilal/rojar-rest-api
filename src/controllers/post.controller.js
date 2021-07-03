@@ -26,6 +26,7 @@ const getPosts = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await postService.queryPosts(filter, options);
+  console.log('POSTS :: ' + result);
   res.send(result);
 });
 
