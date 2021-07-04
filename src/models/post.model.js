@@ -18,6 +18,11 @@ const postSchema = mongoose.Schema(
       required: false,
       trim: true,
     },
+    storeName: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     instagramShare: {
       type: Boolean,
       required: false,
