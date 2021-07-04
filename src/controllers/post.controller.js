@@ -14,6 +14,7 @@ const createPost = catchAsync(async (req, res) => {
   const { body } = req;
   // eslint-disable-next-line dot-notation
   body['pickupAddress'] = store.storeAddress;
+  body['storeName'] = store.storeName;
   // eslint-disable-next-line no-console
   console.log(body);
 
