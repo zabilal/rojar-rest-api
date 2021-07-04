@@ -16,7 +16,7 @@ const createPost = catchAsync(async (req, res) => {
   body['pickupAddress'] = store.storeAddress;
   body['storeName'] = store.storeName;
   // eslint-disable-next-line no-console
-  console.log(body);
+  console.log('BODY b4 :: ' + JSON.stringify(body));
 
   const post = await postService.createPost(body);
   res.status(httpStatus.CREATED).send(post);
